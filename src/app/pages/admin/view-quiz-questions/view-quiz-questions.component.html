@@ -1,0 +1,51 @@
+<mat-card>
+    <mat-card-title>
+        Questions of {{quizTitle}}
+        <button mat-button color="accent" [routerLink]='"/admin-dashboard/add-question/"+quizId+"/"+quizTitle'>Add
+            Question</button>
+        <button mat-button color="primary" [routerLink]='"/admin-dashboard/quizzes"'>Back</button>
+    </mat-card-title>
+</mat-card>
+<mat-card *ngFor="let q of questions; let i = index">
+    <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card-content>
+                    <p><b>Q{{i+1}}) </b><span [innerHTML]="q.content"></span></p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6" *ngIf="(q.option1.trim())==''||(q.option1)==null?false:true">
+                                <p>&bull; {{q.option1}}</p>
+                            </div>
+                            <div class="col-md-6" *ngIf="(q.option2.trim())==''||(q.option2)==null?false:true">
+                                <p>&bull; {{q.option2}}</p>
+                            </div>
+                            <!-- </div>
+                        <div class="row"> -->
+                            <div class="col-md-6" *ngIf="(q.option3.trim())==''||(q.option3)==null?false:true">
+                                <p>&bull; {{q.option3}}</p>
+                            </div>
+                            <div class="col-md-6" *ngIf="(q.option4.trim())==''||(q.option4)==null?false:true">
+                                <p>&bull; {{q.option4}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </mat-card-content>
+                <mat-card-footer>
+                    <div class="container-fluid m10">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <b>Correct Answer: </b>{{q.answer}}
+                                <button mat-button color="accent"
+                                    [routerLink]='"/admin-dashboard/edit-question/"+quizId+"/"+quizTitle+"/"+q.quesId'>Update</button>
+                                <button mat-button color="warn" (click)="onDelete(q)">Delete</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-footer>
+            </div>
+        </div>
+    </div>
+</mat-card>

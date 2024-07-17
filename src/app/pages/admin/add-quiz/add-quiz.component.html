@@ -1,0 +1,93 @@
+<mat-card>
+    <mat-card-title>Add Quiz</mat-card-title>
+</mat-card>
+<mat-card>
+    <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <form (ngSubmit)="formAddSubmit()" ngNativeValidate>
+                    <!-- quiz title -->
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input type="text" [(ngModel)]="quizData.title" name="title" required
+                            placeholder="Enter quiz title" matInput />
+                    </mat-form-field>
+
+                    <!-- quiz description -->
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea name="description" [(ngModel)]="quizData.description" required
+                            placeholder="Enter quiz description" matInput></textarea>
+                    </mat-form-field>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- max marks -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Maximum Score</mat-label>
+                                <input type="number" [(ngModel)]="quizData.maxMarks" required name="marks"
+                                    placeholder="Enter maximum marks for quiz" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- total time -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Total time</mat-label>
+                                <input type="number" [(ngModel)]="quizData.totalTime" required name="time"
+                                    placeholder="Enter total time to attempt quiz" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- max questions -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Number of Questions</mat-label>
+                                <input type="number" [(ngModel)]="quizData.numberOfQuestions" required name="questions"
+                                    placeholder="Enter total number of questions in quiz" matInput />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <!-- whether quiz is active or not -->
+                            <mat-slide-toggle class="mt20 mb20" name="active" [color]="color"
+                                [(ngModel)]="quizData.active">
+                                Active on Portal
+                            </mat-slide-toggle>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Parent Category of quiz -->
+                            <mat-form-field [color]="color" appearance="outline">
+                                <mat-label>Category</mat-label>
+                                <mat-select name="category" [(ngModel)]="quizData.category.cId" required>
+                                    <mat-option *ngFor="let c of categories" [value]="c.cId">
+                                        {{c.title}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="container-fluid text-center">
+
+
+                        <!-- Add quiz button -->
+                        <button class="mt20" mat-raised-button color="accent" type="submit">Add
+                            Quiz</button>
+
+
+                        <!--back button -->
+                        <button mat-raised-button color="primary" class="m10"
+                            routerLink="/admin-dashboard/quizzes">Back</button>
+
+
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>
+<!-- {{quizData|json}} -->
